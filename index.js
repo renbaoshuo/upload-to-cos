@@ -106,8 +106,8 @@ const collectLocalFiles = async (cos) => {
   const root = cos.localPath;
   const files = new Map();
 
-  const includeRegex = new RegExp(input.include);
-  const excludeRegex = new RegExp(input.exclude);
+  const includeRegex = new RegExp(cos.include);
+  const excludeRegex = new RegExp(cos.exclude);
 
   await walk(root, (path) => {
     let p = path.substring(root.length);
@@ -246,6 +246,8 @@ try {
     region: core.getInput('region'),
     localPath: core.getInput('local-path'),
     remotePath: core.getInput('remote-path'),
+    include: core.getInput('include-regex'),
+    exclude: core.getInput('exclude-regex'),
     clean: !core.getBooleanInput('no-delete-remote-files'),
     delayHtmlFileUpload: core.getBooleanInput('delay-html-file-upload'),
     incremental: core.getBooleanInput('incremental'),
