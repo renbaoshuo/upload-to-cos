@@ -42,7 +42,7 @@ inputs:
     default: 'false'
     required: false
   retry:
-    description: Retry times for each CSS operation. Default is 5.
+    description: Retry times for each COS operation. Default is 5.
     default: '5'
     required: false
   incremental:
