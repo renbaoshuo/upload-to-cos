@@ -169,7 +169,7 @@ const collectRemoteFiles = async (cos) => {
 const findDeletedFiles = (localFiles, remoteFiles) => {
   const deletedFiles = new Set();
   for (const file of remoteFiles) {
-    if (!localFiles.has(file)) {
+    if (!localFiles.includes(file)) {
       deletedFiles.add(file);
     }
   }
@@ -214,7 +214,8 @@ const process = async (cos) => {
 
   let cleanedFilesCount = 0;
   if (cos.clean) {
-    const remoteFiles = Object.keys(remote);
+    const localFiles = Array.from(local.keys());
+    const remoteFiles = Array.from(remote.keys());
     const deletedFiles = findDeletedFiles(localFiles, remoteFiles);
 
     if (deletedFiles.length > 0) {
